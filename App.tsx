@@ -1,13 +1,14 @@
 import { NavigationContainer } from '@react-navigation/native';
 
-// nav import
-
 import RockSoulStack from './BigFinRockSoul/BigFinRockSoulRoutes/RockSoulStack';
+import { ContextProvider } from './BigFinRockSoul/SoulRockStore/finContxt';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <RockSoulStack />
+      <ContextProvider>
+        <RockSoulStack />
+      </ContextProvider>
     </NavigationContainer>
   );
 };

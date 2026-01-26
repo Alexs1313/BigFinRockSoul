@@ -1,5 +1,6 @@
-import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useCallback, useEffect, useState } from 'react';
 import {
   Image,
   ImageBackground,
@@ -10,12 +11,126 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
+import Sound from 'react-native-sound';
+import { useFinStore } from '../SoulRockStore/finContxt';
 
 const RockHomeScreen = () => {
-  const [idx, setIdx] = useState(0);
-  const nav = useNavigation();
+  const navigation = useNavigation();
   const { height } = useWindowDimensions();
+  const [finMusIdx, setFinMusIdx] = useState(0);
+  const [sound, setSound] = useState(null);
+  const finTracksCycle = [
+    '679359__vannipat__melody-loop-mix-128-bpm.mp3',
+    '679359__vannipat__melody-loop-mix-128-bpm.mp3',
+  ];
+  const { finSoundEnabled, setFinSoundEnabled } = useFinStore();
+  const [totalScore, setTotalScore] = useState(0);
+
+  useFocusEffect(
+    useCallback(() => {
+      loadFinBgMusic();
+      loadTotalScore();
+    }, []),
+  );
+
+  useEffect(() => {
+    playFinMusic(finMusIdx);
+
+    return () => {
+      if (sound) {
+        sound.stop(() => {
+          sound.release();
+        });
+      }
+    };
+  }, [finMusIdx]);
+
+  const loadTotalScore = useCallback(async () => {
+    try {
+      const stored = await AsyncStorage.getItem('flamingo_total_score');
+      const parsed = stored ? parseInt(stored, 10) : 0;
+      setTotalScore(Number.isFinite(parsed) ? parsed : 0);
+    } catch (e) {
+      console.log('loadTotalScore error:', e);
+      setTotalScore(0);
+    }
+  }, []);
+
+  const playFinMusic = index => {
+    if (sound) {
+      sound.stop(() => {
+        sound.release();
+      });
+    }
+
+    const finTrackPath = finTracksCycle[index];
+
+    const newFinGameSound = new Sound(
+      finTrackPath,
+
+      Sound.MAIN_BUNDLE,
+
+      error => {
+        if (error) {
+          console.log('Error =>', error);
+          return;
+        }
+
+        newFinGameSound.play(success => {
+          if (success) {
+            setFinMusIdx(prevIndex => (prevIndex + 1) % finTracksCycle.length);
+          } else {
+            console.log('Error =>');
+          }
+        });
+        setSound(newFinGameSound);
+      },
+    );
+  };
+
+  useEffect(() => {
+    const setVolumeGameMusic = async () => {
+      try {
+        const finMusicValue = await AsyncStorage.getItem('toggleSound');
+
+        const isFinMusicOn = JSON.parse(finMusicValue);
+        setFinSoundEnabled(isFinMusicOn);
+        if (sound) {
+          sound.setVolume(isFinMusicOn ? 1 : 0);
+        }
+      } catch (error) {
+        console.error('Error =>', error);
+      }
+    };
+
+    setVolumeGameMusic();
+  }, [sound]);
+
+  useEffect(() => {
+    if (sound) {
+      sound.setVolume(finSoundEnabled ? 1 : 0);
+    }
+  }, [finSoundEnabled]);
+
+  const loadFinBgMusic = async () => {
+    try {
+      const finMusicValue = await AsyncStorage.getItem('toggleSound');
+      const isFinMusicOn = JSON.parse(finMusicValue);
+      setFinSoundEnabled(isFinMusicOn);
+    } catch (error) {
+      console.error('Error loading fin music =>', error);
+    }
+  };
+
+  const toggleSound = async selectedValue => {
+    try {
+      await AsyncStorage.setItem('toggleSound', JSON.stringify(selectedValue));
+
+      setFinSoundEnabled(selectedValue);
+    } catch (error) {
+      console.log('Error toggle sound', error);
+    }
+  };
 
   return (
     <ImageBackground
@@ -31,29 +146,48 @@ const RockHomeScreen = () => {
             style={styles.topFrame}
             source={require('../assets/finImages/topQ.png')}
           >
-            <Text style={styles.description}>20</Text>
+            <Text style={styles.description}>{totalScore}</Text>
           </ImageBackground>
 
           <View style={styles.buttonsWrapp}>
             <Image source={require('../assets/finImages/menuFrame.png')} />
-            <TouchableOpacity activeOpacity={0.7}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() => navigation.navigate('LevelsScreen')}
+            >
               <Image source={require('../assets/finImages/menuBtn1.png')} />
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.7}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() => navigation.navigate('PartyZoneScreen')}
+            >
               <Image source={require('../assets/finImages/menuBtn2.png')} />
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.7}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() => navigation.navigate('FinTapGameScreen')}
+            >
               <Image source={require('../assets/finImages/menuBtn3.png')} />
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.7}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() => navigation.navigate('FinStoriesScreen')}
+            >
               <Image source={require('../assets/finImages/menuBtn4.png')} />
             </TouchableOpacity>
 
             <TouchableOpacity
               style={{ zIndex: 1, marginTop: 20 }}
               activeOpacity={0.7}
+              onPress={() => toggleSound(!finSoundEnabled)}
             >
-              <Image source={require('../assets/finImages/musBtn.png')} />
+              <Image
+                source={
+                  finSoundEnabled
+                    ? require('../assets/finImages/musBtn.png')
+                    : require('../assets/finImages/musicOff.png')
+                }
+              />
             </TouchableOpacity>
           </View>
         </View>
@@ -102,8 +236,6 @@ const styles = StyleSheet.create({
     color: '#FDEB57',
     fontSize: 20,
     textAlign: 'center',
-    marginHorizontal: 20,
-    paddingHorizontal: 30,
     fontWeight: '900',
     left: 10,
   },
