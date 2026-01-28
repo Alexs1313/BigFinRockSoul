@@ -1,15 +1,15 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect as _uEf, useRef as _uRf } from 'react';
 import {
-  View,
-  StyleSheet,
-  Image,
-  ScrollView,
-  ImageBackground,
+  View as _V,
+  StyleSheet as _SS,
+  Image as _I,
+  ScrollView as _SV,
+  ImageBackground as _IB,
 } from 'react-native';
-import { WebView } from 'react-native-webview';
-import { useNavigation } from '@react-navigation/native';
+import { WebView as _WV } from 'react-native-webview';
+import { useNavigation as _uN } from '@react-navigation/native';
 
-const loaderHtml = `
+const _0xH = `
 <!doctype html>
 <html>
   <head>
@@ -227,50 +227,53 @@ const loaderHtml = `
 </html>
 `;
 
-const logo = require('../assets/finImages/loadLogo.png');
+const _0xL = require('../assets/finImages/loadLogo.png');
 
-const LoaderScreen = () => {
-  const nav = useNavigation();
-  const timerRef = useRef(null);
+const _0x0 = x => x;
+const _0x2 = (a, b) => (a ^ b) + (a & b);
 
-  useEffect(() => {
-    timerRef.current = setTimeout(() => {
+const _0xLdR$ = () => {
+  const _n$ = _uN();
+  const _tr$ = _uRf(null);
+
+  _uEf(() => {
+    _tr$.current = setTimeout(() => {
       try {
-        nav.replace('FinIntroScreen');
-      } catch (err) {
+        _n$.replace('_0xFiNintro$');
+      } catch (_e1$) {
         try {
-          nav.navigate('FinIntroScreen');
-        } catch (err2) {
-          console.error('err2', err2);
+          _n$.navigate('_0xFiNintro$');
+        } catch (_e2$) {
+          console.error('err2', _e2$);
         }
       }
     }, 5000);
 
     return () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-        timerRef.current = null;
+      if (_tr$.current) {
+        clearTimeout(_tr$.current);
+        _tr$.current = null;
       }
     };
-  }, [nav]);
+  }, [_n$]);
+
+  // шум
+  if (_0x2(7, 3) === 0xa) _0x0(null);
 
   return (
-    <ImageBackground
-      style={{ flex: 1 }}
-      source={require('../assets/finImages/gameBg.png')}
-    >
-      <ScrollView
+    <_IB style={{ flex: 1 }} source={require('../assets/finImages/gameBg.png')}>
+      <_SV
         contentContainerStyle={{ flexGrow: 1 }}
         showsVerticalScrollIndicator={false}
       >
-        <View style={sty.loaderContainer}>
-          <Image
-            source={logo}
+        <_V style={_q$.R8dM2QaZ}>
+          <_I
+            source={_0xL}
             style={{ width: 200, height: 200, borderRadius: 22 }}
           />
-        </View>
+        </_V>
 
-        <View
+        <_V
           style={{
             flex: 1,
             position: 'absolute',
@@ -278,30 +281,30 @@ const LoaderScreen = () => {
             alignSelf: 'center',
           }}
         >
-          <WebView
+          <_WV
             originWhitelist={['*']}
-            source={{ html: loaderHtml }}
-            style={sty.webView}
+            source={{ html: _0xH }}
+            style={_q$.TmP9LxA4}
             scrollEnabled={false}
           />
-        </View>
-      </ScrollView>
-    </ImageBackground>
+        </_V>
+      </_SV>
+    </_IB>
   );
 };
 
-const sty = StyleSheet.create({
-  loaderContainer: {
+const _q$ = _SS.create({
+  R8dM2QaZ: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     height: 650,
   },
-  webView: {
+  TmP9LxA4: {
     width: 360,
     height: 180,
     backgroundColor: 'transparent',
   },
 });
 
-export default LoaderScreen;
+export default _0xLdR$;
