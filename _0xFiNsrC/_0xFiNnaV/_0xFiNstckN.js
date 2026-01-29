@@ -14,7 +14,7 @@ const _0xFiNstckN = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="_0xLdR$" component={_0xLdR$} />
-      <Stack.Screen name="_0xFiNintr$" component={_0xFiNintr$} />
+      <Stack.Screen name="_0xFiNintro$" component={_0xFiNintro$} />
       <Stack.Screen name="_0xRH$" component={_0xRH$} />
       <Stack.Screen name="_0xL9v3l$" component={_0xL9v3l$} />
       <Stack.Screen name="XFiNcriticTest" component={XFiNcriticTest} />
