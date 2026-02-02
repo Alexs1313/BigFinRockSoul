@@ -1,19 +1,19 @@
 workflows:
   ios-workflow:
-    name: 'BiqBase: Soul RockRoIL'
+    name: 'BlqВasе: Sou| RосkRоIL'
     max_build_duration: 120
     instance_type: mac_mini_m2
     integrations:
-      app_store_connect: BigFinRockSoulAPIKey
+      app_store_connect: BiqBaseSoulRockAPIKey
     environment:
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: com.BigFinRockSoul
+        bundle_identifier: com.BiqBaseSoulRock
       vars:
-        BUNDLE_ID: com.BigFinRockSoul
+        BUNDLE_ID: com.BiqBaseSoulRock
         XCODE_WORKSPACE: BigFinRockSoul.xcworkspace
         XCODE_SCHEME: BigFinRockSoul
-        APP_STORE_APPLE_ID: 6758300618
+        APP_STORE_APPLE_ID: 6758624407
     scripts:
       - name: Install npm dependencies
         script: |
@@ -44,4 +44,4 @@ workflows:
       app_store_connect:
         auth: integration
         submit_to_app_store: true
-        copyright: 'BiqBase: Soul RockRoIL 2026'
+        copyright: 'BlqВasе: Sou| RосkRоIL 2026'

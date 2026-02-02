@@ -47,7 +47,7 @@ export default function _0xFSt0ries$() {
       const _ps$ = _sv$ ? parseInt(_sv$, 10) : 0;
       return _0x1(_ps$);
     } catch (_e$) {
-      console.log('readUnlockedCount error:', _e$);
+      console.log('readUnlockedCoun error:', _e$);
       return 0;
     }
   }, []);
