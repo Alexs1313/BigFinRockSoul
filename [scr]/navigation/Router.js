@@ -15,7 +15,7 @@ const Router = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="BigFinLoaderScreen" component={BigFinLoaderScreen} />
-      <Stack.Screen name="IntroduceScreen" component={IntroduceScreen} />
+      <Stack.Screen name="IntroduceScreen" component={IntroduceScree} />
       <Stack.Screen name="BigFinHomeScreen" component={BigFinHomeScreen} />
       <Stack.Screen
         name="BigFinCriticLevelsScreen"
