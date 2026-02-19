@@ -1,15 +1,7 @@
-import React, { useEffect as _uEf, useRef as _uRf } from 'react';
-import {
-  View as _V,
-  StyleSheet as _SS,
-  Image as _I,
-  ScrollView as _SV,
-  ImageBackground as _IB,
-} from 'react-native';
-import { WebView as _WV } from 'react-native-webview';
-import { useNavigation as _uN } from '@react-navigation/native';
+import React from 'react';
+import { WebView } from 'react-native-webview';
 
-const _0xH = `
+const loaderHtml = `
 <!doctype html>
 <html>
   <head>
@@ -227,84 +219,13 @@ const _0xH = `
 </html>
 `;
 
-const _0xL = require('../assets/finImages/loadLogo.png');
-
-const _0x0 = x => x;
-const _0x2 = (a, b) => (a ^ b) + (a & b);
-
-const _0xLdR$ = () => {
-  const _n$ = _uN();
-  const _tr$ = _uRf(null);
-
-  _uEf(() => {
-    _tr$.current = setTimeout(() => {
-      try {
-        _n$.replace('_0xFiNintro$');
-      } catch (_e1$) {
-        try {
-          _n$.navigate('_0xFiNintro$');
-        } catch (_e2$) {
-          console.error('err2', _e2$);
-        }
-      }
-    }, 5000);
-
-    return () => {
-      if (_tr$.current) {
-        clearTimeout(_tr$.current);
-        _tr$.current = null;
-      }
-    };
-  }, [_n$]);
-
-  // шум
-  if (_0x2(7, 3) === 0xa) _0x0(null);
-
+export default function BigFinLoaderWebview({ style }) {
   return (
-    <_IB style={{ flex: 1 }} source={require('../assets/finImages/gameBg.png')}>
-      <_SV
-        contentContainerStyle={{ flexGrow: 1 }}
-        showsVerticalScrollIndicator={false}
-      >
-        <_V style={_q$.R8dM2QaZ}>
-          <_I
-            source={_0xL}
-            style={{ width: 200, height: 200, borderRadius: 22 }}
-          />
-        </_V>
-
-        <_V
-          style={{
-            flex: 1,
-            position: 'absolute',
-            bottom: 20,
-            alignSelf: 'center',
-          }}
-        >
-          <_WV
-            originWhitelist={['*']}
-            source={{ html: _0xH }}
-            style={_q$.TmP9LxA4}
-            scrollEnabled={false}
-          />
-        </_V>
-      </_SV>
-    </_IB>
+    <WebView
+      originWhitelist={['*']}
+      source={{ html: loaderHtml }}
+      style={style}
+      scrollEnabled={false}
+    />
   );
-};
-
-const _q$ = _SS.create({
-  R8dM2QaZ: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 650,
-  },
-  TmP9LxA4: {
-    width: 360,
-    height: 180,
-    backgroundColor: 'transparent',
-  },
-});
-
-export default _0xLdR$;
+}

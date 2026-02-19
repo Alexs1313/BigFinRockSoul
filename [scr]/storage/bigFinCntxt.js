@@ -6,7 +6,7 @@ export const useFinStore = () => {
   return useContext(StoreContext);
 };
 
-export const ContextProvider = ({ children }) => {
+export const SettingsCpntext = ({ children }) => {
   const [finNotificationsEnabled, setFinNotificationsEnabled] = useState(false);
   const [finSoundEnabled, setFinSoundEnabled] = useState(false);
 
