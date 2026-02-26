@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { SettingsCpntext } from './[scr]/storage/bigFinCntxt';
 import Router from './[scr]/navigation/Router';
 
-const App = () => {
+const BiggyCore = () => {
   return (
     <NavigationContainer>
       <SettingsCpntext>
@@ -13,4 +13,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default BiggyCore;

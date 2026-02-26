@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import BigFinCriticDonePhase from '../components/BigFinCriticDonePhase';
 import BigFinCriticOverPhase from '../components/BigFinCriticOverPhase';
 import BigFinCriticQuizPhase from '../components/BigFinCriticQuizPhase';
-import { quizQuestions as bigFinQuizQuestions } from '../data/quizQuestions';
+import { quizQuestions as bigFinQuizQuestions } from '../../quizQuestions';
 import { useAdaptiveSizes } from '../hooks/useAdaptiveSizes';
 
 const asyncKeys = {

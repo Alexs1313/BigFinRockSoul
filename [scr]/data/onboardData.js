@@ -1,8 +1,8 @@
 export const onboardSlides = [
   {
-    title: 'Meet Big Fin',
+    title: 'Meet Biggy Fin',
     description:
-      "Big Fin dreams of singing on stage. But every time he tries, his inner critic whispers: 'You're not good enough…'",
+      "Biggy Fin dreams of singing on stage. But every time he tries, his inner critic whispers: 'You're not good enough…'",
     image: require('../assets/finImages/on1.png'),
     buttonLabel: 'Begin',
   },
@@ -16,7 +16,7 @@ export const onboardSlides = [
   {
     title: `But there's a problem…`,
     description:
-      'No one will come if Big Fin keeps doubting himself.\n\nHe needs your help to silence his inner critic and invite friends to the party.',
+      'No one will come if Biggy Fin keeps doubting himself.\n\nHe needs your help to silence his inner critic and invite friends to the party.',
     image: require('../assets/finImages/on3.png'),
     buttonLabel: 'Next',
   },
@@ -37,7 +37,7 @@ export const onboardSlides = [
   {
     title: 'Build the Ultimate Party',
     description:
-      "Invite friends\nRead their stories\nDecorate the dance floor\nMake Big Fin a star\nLet's make this party legendary!",
+      "Invite friends\nRead their stories\nDecorate the dance floor\nMake Biggy Fin a star\nLet's make this party legendary!",
     image: require('../assets/finImages/on6.png'),
     buttonLabel: "Let's Rock!",
   },
