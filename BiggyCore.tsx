@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 
-import { SettingsCpntext } from './[scr]/storage/bigFinCntxt';
-import Router from './[scr]/navigation/Router';
+import { SettingsCpntext } from './[scr]/biggysoulstrg/bigFinCntxt';
+import Router from './[scr]/biggysoulnavigator/Router';
 
 const BiggyCore = () => {
   return (
