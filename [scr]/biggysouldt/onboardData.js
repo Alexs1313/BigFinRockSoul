@@ -2,7 +2,7 @@ export const onboardSlides = [
   {
     title: `Welcome to the 
 Ocean Party`,
-    description: `Deep under the ocean lives a fish named Biggy Fin. He loves music, neon lights and big parties.
+    description: `Deep under the ocean lives a fish named Big Fin. He loves music, neon lights and big parties.
 But sometimes he wonders…Will anyone listen to his voice?`,
     image: require('../assets/finImages/on2.png'),
     buttonLabel: 'Begin',
@@ -10,14 +10,14 @@ But sometimes he wonders…Will anyone listen to his voice?`,
   {
     title: 'The Party Idea',
     description:
-      'One day Biggy Fin had a simple idea. If he wants to be heard… why not throw a huge underwater party?',
+      'One day Big Fin had a simple idea. If he wants to be heard… why not throw a huge underwater party?',
     image: require('../assets/finImages/on7.png'),
     buttonLabel: 'Next',
   },
   {
     title: `But there's a problem…`,
     description:
-      'No one will come if Biggy Fin keeps doubting himself.\n\nHe needs your help to silence his inner critic and invite friends to the party.',
+      'No one will come if Big Fin keeps doubting himself.\n\nHe needs your help to silence his inner critic and invite friends to the party.',
     image: require('../assets/finImages/on3.png'),
     buttonLabel: 'Next',
   },
