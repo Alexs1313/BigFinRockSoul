@@ -138,7 +138,7 @@ const stules = StyleSheet.create({
   scrn: {
     flex: 1,
     alignItems: 'center',
-    paddingBottom: 30,
+    paddingBottom: 31,
   },
 
   scoreBadge: {
